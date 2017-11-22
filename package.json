@@ -1,0 +1,27 @@
+{
+  "name": "pomelo-data-mgr",
+  "version": "1.0.0",
+  "description": "mysql db redis cache plugin base on pomelo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luckyqqk/pomeloDataMgr.git"
+  },
+  "keywords": [
+    "pomelo-data-mgr"
+  ],
+  "author": "luckyqqk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luckyqqk/pomeloDataMgr/issues"
+  },
+  "homepage": "https://github.com/luckyqqk/pomeloDataMgr#readme",
+  "dependencies": {
+    "db-mgr": "^1.0.1",
+    "db-table": "^1.0.0",
+    "table-redis": "^1.0.0"
+  }
+}
