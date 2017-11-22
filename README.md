@@ -36,14 +36,14 @@ npm install pomelo-data-mgr --save
 {
   "dataMgr": {
     "mysql": {
-      "host": "192.168.10.231",
+      "host": "192.168.1.111",
       "port": "3306",
-      "database": "chariot",
-      "user": "root",
-      "password": "111111"
+      "database": "xxxx",
+      "user": "name",
+      "password": "pwd"
     },
     "redis": {
-      "host": "192.168.10.231",
+      "host": "192.168.1.111",
       "port": 6379,
       "password": {}
     }
