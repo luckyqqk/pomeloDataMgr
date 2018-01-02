@@ -1,27 +1,74 @@
 {
-  "name": "pomelo-data-mgr",
-  "version": "1.0.0",
-  "description": "mysql db redis cache plugin base on pomelo",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_args": [
+    [
+      "pomelo-data-mgr",
+      "/Projects/svn/Server/chariot/game-server"
+    ]
+  ],
+  "_from": "pomelo-data-mgr@latest",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/pomelo-data-mgr",
+  "_nodeVersion": "6.2.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/pomelo-data-mgr-1.0.0.tgz_1511342800441_0.6194450566545129"
   },
+  "_npmUser": {
+    "email": "luckyqqk@163.com",
+    "name": "luckyqqk"
+  },
+  "_npmVersion": "3.8.9",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "pomelo-data-mgr",
+    "raw": "pomelo-data-mgr",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/pomelo-data-mgr/-/pomelo-data-mgr-1.0.0.tgz",
+  "_shasum": "28c73b013547869868f4d0c85404b176c90a30a7",
+  "_shrinkwrap": null,
+  "_spec": "pomelo-data-mgr",
+  "_where": "/Projects/svn/Server/chariot/game-server",
+  "author": "luckyqqk",
+  "bugs": {
+    "url": "https://github.com/luckyqqk/pomeloDataMgr/issues"
+  },
+  "dependencies": {
+    "db-mgr": "^1.0.3",
+    "db-table": "^1.0.2",
+    "table-redis": "^1.0.1"
+  },
+  "description": "mysql db redis cache plugin base on pomelo",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "28c73b013547869868f4d0c85404b176c90a30a7",
+    "tarball": "https://registry.npmjs.org/pomelo-data-mgr/-/pomelo-data-mgr-1.0.0.tgz"
+  },
+  "homepage": "https://github.com/luckyqqk/pomeloDataMgr#readme",
+  "keywords": [
+    "pomelo-data-mgr"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    "luckyqqk <luckyqqk@163.com>"
+  ],
+  "name": "pomelo-data-mgr",
+  "optionalDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luckyqqk/pomeloDataMgr.git"
   },
-  "keywords": [
-    "pomelo-data-mgr"
-  ],
-  "author": "luckyqqk",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/luckyqqk/pomeloDataMgr/issues"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/luckyqqk/pomeloDataMgr#readme",
-  "dependencies": {
-    "db-mgr": "^1.0.1",
-    "db-table": "^1.0.0",
-    "table-redis": "^1.0.0"
-  }
+  "version": "1.0.1"
 }

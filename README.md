@@ -15,9 +15,9 @@ mysql db redis cache plugin base on pomelo
 ### 依赖
 ```
 "dependencies": {
-		"db-mgr": "^1.0.1",
-		"db-table": "^1.0.0",
-		"table-redis": "^1.0.0",
+    "db-mgr": "^1.0.3",
+    "db-table": "^1.0.2",
+    "table-redis": "^1.0.1"
 }
 ```
 * 依赖的这几个包,都是最近独立封装出来的.
