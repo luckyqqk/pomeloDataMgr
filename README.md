@@ -1,4 +1,15 @@
 # pomeloDataMgr
+[![NPM Version][npm-image]][npm-url]
+[![NPM Downloads][downloads-image]][downloads-url]
+[![Node.js Version][node-version-image]][node-version-url]
+
+[npm-image]: https://img.shields.io/npm/v/pomelo-data-mgr.svg
+[npm-url]: https://npmjs.org/package/pomelo-data-mgr
+[downloads-image]: https://img.shields.io/npm/dm/pomelo-data-mgr.svg
+[downloads-url]: https://npmjs.org/package/pomelo-data-mgr
+[node-version-image]: https://img.shields.io/badge/node-%3E6.0.0-brightgreen.svg
+[node-version-url]: https://nodejs.org/en/download/
+
 mysql db redis cache plugin base on pomelo
 ### 作用分析
 * 有些初级甚至中级程序员,他们逻辑思维非常棒,但因为经验问题,在项目的产出上效率不是很理想.
@@ -116,6 +127,5 @@ deleteRedisCacheByFather(tableName, primaryValue, foreignValue, cb)
 ```
 runLua
 ```
-
 
 
