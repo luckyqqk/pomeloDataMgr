@@ -32,8 +32,9 @@ mysql db redis cache plugin base on pomelo
 }
 ```
 * 依赖的这几个包,都是最近独立封装出来的.
-* db-mgr也会依赖mysql和generic-pool
-* table-redis依赖ioredis
+* 使用请先安装配置[db-mgr](https://github.com/luckyqqk/dbMgr),
+[db-table](https://github.com/luckyqqk/dbTable),
+[table-redis](https://github.com/luckyqqk/tableRedis)
 * 之所以将这几个包分别独立出来,而不是统一的放在一个包中(原来确实是在一个包中).
 * 是因为这些包均不应该是单例模式,在项目中有可能新建另外的实例去负责别的事儿.
 
@@ -42,70 +43,45 @@ mysql db redis cache plugin base on pomelo
 ```
 npm install pomelo-data-mgr --save
 ```
-2. 进入pomelo项目的config文件夹下,新建dataMgr文件夹,进入dataMgr,新建dataMgr.json
-```
-{
-  "dataMgr": {
-    "mysql": {
-      "host": "192.168.1.111",
-      "port": "3306",
-      "database": "xxxx",
-      "user": "name",
-      "password": "pwd"
-    },
-    "redis": {
-      "host": "192.168.1.111",
-      "port": 6379,
-      "password": {}
-    }
-  }
-}
-```
-3. app.js中可配置服务,在需要的服务配置中,增加一行代码.比如在大厅服的配置.
+2. app.js中可配置服务,在需要的服务配置中,增加一行代码.比如在大厅服的配置.
 ```
 app.configure('production|development', 'hall', function () {
-    app.use(require('pomelo-data-mgr'), require(app.getBase() + "/config/dataMgr/dataMgr.json"));
+    app.use(require('pomelo-data-mgr'));
 });
 ```
-4. 在逻辑代码中需要数据支持的地方,使用如下代码:
+3. 在逻辑代码中需要数据支持的地方,使用如下代码:
 ```
-pomelo.app.get('dataMgr').getTableData(tableName, 1, cb);
+pomelo.app.get('dataMgr').selectData(tableName, 主键值, 外键值, cb);
 ```
 示例代码可在cb中取到tableName这张表中,外键值为1的数据.
 同理调用其他方法,即可完成其他功能(无非就是CRUD).
 
 ### 使用注意
 * 该插件采用的是node原生的异步风格,并未支持同步方式(以后可能会改),所以使用者需适应异步编程的方式.
-* 插件的单条数据更新需传入一个redisIndex,是限制于redis中的list结构的更新方式.所以,使用者要知道我即将更新的数据的redisIndex是什么.
-* redisIndex是什么?
-* redis的list结构,取出的是个数组,redisIndex即是这个数组的下标.
-* 但很多时候,逻辑并不需要数组全部的数据(根据条件获取),这时候,我就会在数据中增加一个redisIndex的字段,
-* 以便需要数据更新的时候会用.而且请放心,缓存的数据,我会去掉这个字段.
 
 ### 方法支持
-* 取某个表中sign相关的所有数据
+* 数据获取(主键值不为0,取主键对应数据,否则取外键对应的数据组)
 ```
-getTableData(tableName, sign, cb)   // sign 主键/外键的值
+selectData = function (tableName, priValue, forValue, cb)
 ```
 * 根据条件取数据
+* @param condition 返回符合条件的数据,必须含有主键值或者外键值
 ```
-getTableDataByCondition(tableName, condition, cb) // 取出的数据会有redisIndex字段
-```
-* 获取多表数据,返回数据顺序与请求数组顺序相同.
-```
-getDataByArray(arr, cb)
+selectDataByCondition(tableName, condition, cb)
 ```
 * 插入数据(支持数组)
+* @param {JSON|Array} jsonArray 
 ```
-insertData(tableName, jsonArray, cb)
+insertData = function (tableName, jsonArray, cb)
 ```
 * 数据更新
 ``` 
-updateData(tableName, jsonValue, redisIndex, cb)
+updateData = function(tableName, jsonValue, cb)
 ```
-* 根据redis中的下标,删除某一条数据,首先清除缓存,然后删除数据库.
+* 删除数据
+* @param priValue  // 想要删除的主键id,如果id为0则删除外键下的所有数据
 ```
-deleteTableData(tableName, foreignValue, index, cb)
+deleteData = function(tableName, priValue, forValue, cb)
 ```
 * 根据外键值删除数据
 ```
@@ -117,11 +93,11 @@ getPrimaryKey(tableName)
 ```
 * 某表某条件下数据是否存在,仅支持'='条件,不支持'<>'等条件.
 ```
-isExist(tableName, condition, cb)
+isExist = function (tableName, condition, cb)
 ```
 * 根据根表和根表主键值,删除其和其下相关的数据缓存,不删除数据库.
 ```
-deleteRedisCacheByFather(tableName, primaryValue, foreignValue, cb)
+deleteRedisCacheByFather = function(tableName, primaryValue, foreignValue, cb)
 ```
 * redis执行lua脚本,不会操作数据库(实际项目很少使用).
 ```
